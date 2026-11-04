@@ -70,10 +70,11 @@
     ] },
     { id: 'coaches', label: '教練', desc: '新增、修改或調整教練順序。', fields: [
       { k: 'coaches', t: 'list', add: '新增教練', title: (i) => i.name || '新教練',
-        blank: () => ({ name: '', title: '', specialties: '', bio: '', photo: '', instagram: '' }),
+        blank: () => ({ name: '', title: '', hideTitle: false, specialties: '', bio: '', photo: '', instagram: '' }),
         item: [
           { k: 'name', l: '姓名', t: 'text' },
           { k: 'title', l: '職稱', t: 'text' },
+          { k: 'hideTitle', l: '不顯示職稱', t: 'check', defaultOff: true },
           { k: 'specialties', l: '專長', t: 'text', hint: '用逗號分開，例如：銀髮族訓練, 健力' },
           { k: 'bio', l: '介紹', t: 'textarea', rows: 5 },
           { k: 'photo', l: '照片', t: 'image' },
@@ -195,7 +196,7 @@
     if (field.t === 'image') return imageField(field, obj, key);
     if (field.t === 'check') {
       return el('label', { class: 'check' },
-        el('input', { type: 'checkbox', checked: obj[key] !== false, onchange: (e) => { obj[key] = e.target.checked; touched(); } }),
+        el('input', { type: 'checkbox', checked: field.defaultOff ? obj[key] === true : obj[key] !== false, onchange: (e) => { obj[key] = e.target.checked; touched(); } }),
         field.l);
     }
     const update = (e) => { obj[key] = e.target.value; touched(); };

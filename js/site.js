@@ -229,7 +229,7 @@
           : el('img', { src: 'assets/logo.png', alt: '', class: 'is-logo', loading: 'lazy' })),
         el('div', { class: 'coach-body' },
           el('h3', null, coach.name),
-          el('div', { class: 'coach-title' }, coach.title),
+          coach.title && !coach.hideTitle ? el('div', { class: 'coach-title' }, coach.title) : null,
           tags.length ? el('ul', { class: 'tags' }, tags.map((t) => el('li', null, t))) : null,
           el('p', { class: 'coach-bio' }, coach.bio),
           coach.instagram ? el('a', { class: 'text-link', href: coach.instagram, target: '_blank', rel: 'noopener' }, '教練 IG →') : null));
