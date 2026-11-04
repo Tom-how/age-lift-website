@@ -1,0 +1,110 @@
+{
+  "site": {
+    "name": "艾勁健身工作室",
+    "nameEn": "AGE LIFT FITNESS",
+    "location": "台中北屯",
+    "description": "Age Lift Fitness 艾勁健身工作室，位於台中北屯的全預約制肌力訓練空間。一對一課程、精緻包班團課、銀髮族訓練、舉重與健力，並提供自由教練場租。"
+  },
+  "hero": {
+    "eyebrow": "台中北屯｜全預約制肌力訓練工作室",
+    "title": "AGE IS JUST A NUMBER.\nSTRENGTH IS A CHOICE.",
+    "subtitle": "年齡只是數字，變強是一種選擇。不管你是第一次碰槓鈴，還是準備上場比賽，都可以從這裡開始。",
+    "image": "assets/photos/studio-5.jpg"
+  },
+  "about": {
+    "heading": "安靜練，認真變強",
+    "body": "艾勁是一間全預約制的健身工作室。不必排隊等器材，也不用擔心別人的目光，是一個 I 人也能自在訓練的空間。\n\n從一對一課程、精緻包班團課，到銀髮族訓練、肌力訓練、舉重與健力，都能依照你的程度和目標安排。",
+    "image": "assets/photos/studio-2.jpg",
+    "videoUrl": "",
+    "points": [
+      { "title": "全預約制", "text": "I 人友善的訓練空間" },
+      { "title": "一對一課程", "text": "也有精緻包班團課" },
+      { "title": "多元訓練", "text": "銀髮族、肌力、舉重、健力" },
+      { "title": "自由教練場租", "text": "歡迎教練帶學員使用場地" }
+    ],
+    "photos": [
+      { "src": "assets/photos/studio-4.jpg", "caption": "主題牆與深蹲臥推區" },
+      { "src": "assets/photos/studio-1.jpg", "caption": "深蹲架與槓片區" },
+      { "src": "assets/photos/studio-2.jpg", "caption": "舉重平台" },
+      { "src": "assets/photos/studio-3.jpg", "caption": "啞鈴、壺鈴與訓練椅" },
+      { "src": "assets/photos/studio-5.jpg", "caption": "全館空間" }
+    ]
+  },
+  "coaches": [
+    {
+      "name": "教練姓名（待填）",
+      "title": "職稱（待填）",
+      "specialties": "專長一, 專長二, 專長三",
+      "bio": "這裡放教練的經歷、證照與教學風格。請到後台的「教練」頁面修改，也可以上傳教練照片。",
+      "photo": "",
+      "instagram": ""
+    },
+    {
+      "name": "教練姓名（待填）",
+      "title": "職稱（待填）",
+      "specialties": "專長一, 專長二",
+      "bio": "這裡放教練的經歷、證照與教學風格。不需要的教練卡片可以在後台刪除。",
+      "photo": "",
+      "instagram": ""
+    }
+  ],
+  "articles": [
+    {
+      "slug": "weekly-training-menu",
+      "title": "一週能練幾天？來，點一杯",
+      "date": "2026-11-05",
+      "tag": "新手入門",
+      "excerpt": "沒時間運動？先別管要練多久，看看你一週擠得出幾天，直接點一杯。",
+      "cover": "assets/articles/weekly-1.jpg",
+      "published": true,
+      "body": "「我也想運動，但真的沒時間。」\n\n那先別管要練多久，看看你一週擠得出幾天，直接點一杯。\n\n## 本店菜單\n\n- **小杯｜一週 1 天：**全身重訓 1 次，先養成習慣\n- **中杯｜一週 2 天：**全身重訓 2 次，上班族也排得進去\n- **大杯｜一週 3 天：**全身重訓 2 次＋有氧 1 次，肌力、心肺都顧到\n\n![本店菜單](assets/articles/weekly-2.jpg)\n\n## 還能免費加料\n\n每天快走約 22 分鐘，一週就累積約 150 分鐘。\n\n## 來源與說明\n\n每週 2 天肌力訓練、每週 150～300 分鐘中等強度有氧，參考 WHO 2020 身體活動指引。三種杯型的菜單與每次 45～60 分鐘，是教練建議範例，不是研究得出的公式。"
+    },
+    {
+      "slug": "strength-vs-cardio",
+      "title": "重訓還是有氧？其實不用選邊站",
+      "date": "2026-11-02",
+      "tag": "破解迷思",
+      "excerpt": "打開手機查完更混亂：到底要先重訓，還是先有氧？其實它們擅長的事情不一樣。",
+      "cover": "assets/articles/strength-1.jpg",
+      "published": true,
+      "body": "最近看到鏡子裡的自己，心想：該運動了。\n\n但打開手機查完更混亂，到底要先重訓，還是先有氧？\n\n## 它們擅長的事情不一樣\n\n重訓主要練肌力和肌肉，有氧主要練心肺耐力。兩者不是對手，而是分工不同。WHO 的身體活動指引也同時建議這兩類運動。\n\n![教練登場：不用選邊站](assets/articles/strength-2.jpg)\n\n## 那要怎麼開始？\n\n依照你的目標和時間來排就好。還沒有運動習慣的話，一週一次也算開始。"
+    },
+    {
+      "slug": "powerlifting-vs-weightlifting",
+      "title": "健力？舉重？傻傻分不清楚",
+      "date": "2026-10-21",
+      "tag": "分清楚",
+      "excerpt": "只要看到有人拿重量，就等於舉重？其實這是兩種不同的比賽。",
+      "cover": "assets/articles/powerlifting-1.jpg",
+      "published": true,
+      "body": "練健力的人，應該都遇過這種對話：\n\n「你平常有在運動喔？練什麼？」\n\n「我練健力。」\n\n「健⋯⋯力？是舉重嗎？」\n\n對很多人來說，「健力」是個陌生的詞，只要看到有人拿重量，就等於「舉重」。\n\n## 其實這是兩種不同的比賽\n\n- **舉重：**抓舉、挺舉，比爆發力和技術\n- **健力：**深蹲、臥推、硬舉，比最大肌力\n\n![舉重與健力對照圖](assets/articles/powerlifting-2.jpg)\n\n## 那平常在健身房練的呢？\n\n平常在健身房拿啞鈴、做深蹲，兩個都不是，那叫「重量訓練」。下次被問，直接把這篇甩給朋友吧。"
+    }
+  ],
+  "links": {
+    "line": "https://lin.ee/nlvaXrY",
+    "instagram": "https://www.instagram.com/age_lift_fitness/",
+    "threads": "https://www.threads.com/@age_lift_fitness"
+  },
+  "consult": {
+    "heading": "想練，或想租場地？",
+    "intro": "選擇你要詢問的項目，填好訊息模板後一鍵複製，再到官方 LINE 貼上送出。",
+    "types": [
+      {
+        "title": "教練課詢問",
+        "desc": "一對一、包班團課、銀髮族訓練、舉重與健力",
+        "template": "您好，我想詢問教練課，以下是我的資料：\n・稱呼：\n・想上的課程：一對一／包班團課\n・訓練經驗：完全沒練過／練過一些／有固定訓練\n・主要目標：\n・身體狀況或舊傷：\n・方便上課的時段：\n・想指定的教練（可不填）："
+      },
+      {
+        "title": "教練場租詢問",
+        "desc": "自由教練帶學員使用場地",
+        "template": "您好，我是自由教練，想詢問教練場租：\n・稱呼：\n・教練經歷或證照：\n・預計帶的學員人數：\n・想租用的日期與時段：\n・使用頻率：單次／每週固定\n・主要訓練內容：\n・其他想了解的事："
+      }
+    ]
+  },
+  "contact": {
+    "address": "",
+    "mapUrl": "",
+    "hours": "全預約制",
+    "parking": ""
+  }
+}
