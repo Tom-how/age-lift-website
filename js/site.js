@@ -111,7 +111,7 @@
       ['LINE', '官方帳號', links.line, 'line']
     ].filter((item) => safeUrl(item[2]));
     $('footer').replaceChildren(
-      el('div', { class: 'social' }, el('div', { class: 'social-grid' }, items.map(([name, sub, url, ic]) =>
+      el('div', { id: 'social', class: 'social' }, el('div', { class: 'social-grid' }, items.map(([name, sub, url, ic]) =>
         el('a', { class: 'social-link', href: url, target: '_blank', rel: 'noopener' },
           el('span', null, name, el('small', null, sub)), icon(ic))))),
       el('div', { class: 'foot' }, el('div', { class: 'foot-inner' },
