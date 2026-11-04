@@ -26,6 +26,21 @@
     return node;
   }
 
+  // 後台填了 GA 評估 ID 才會載入；預覽草稿不計入流量
+  function initAnalytics(data) {
+    const id = String((data.site && data.site.gaId) || '').trim();
+    if (params.has('preview') || !/^G-[A-Z0-9]+$/i.test(id)) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', id);
+    document.head.append(el('script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id) }));
+  }
+
+  function track(name, detail) {
+    if (window.gtag) window.gtag('event', name, detail);
+  }
+
   function paragraphs(text) {
     return String(text || '').split(/\n\s*\n/).filter(Boolean).map((part) => el('p', null, part.trim()));
   }
@@ -112,7 +127,7 @@
     ].filter((item) => safeUrl(item[2]));
     $('footer').replaceChildren(
       el('div', { id: 'social', class: 'social' }, el('div', { class: 'social-grid' }, items.map(([name, sub, url, ic]) =>
-        el('a', { class: 'social-link', href: url, target: '_blank', rel: 'noopener' },
+        el('a', { class: 'social-link', href: url, target: '_blank', rel: 'noopener', onclick: () => track('social_click', { platform: name }) },
           el('span', null, name, el('small', null, sub)), icon(ic))))),
       el('div', { class: 'foot' }, el('div', { class: 'foot-inner' },
         el('div', null, el('strong', null, data.site.nameEn + '｜' + data.site.name), data.site.location),
@@ -152,8 +167,10 @@
     const lineBtn = el('a', {
       class: 'btn btn-line', href: lineUrl, target: '_blank', rel: 'noopener',
       onclick: (event) => {
-        if (copyText(textarea)) toast('訊息已複製，到 LINE 貼上送出');
-        else { event.preventDefault(); toast('無法自動複製，請手動選取訊息'); textarea.select(); }
+        if (copyText(textarea)) {
+          toast('訊息已複製，到 LINE 貼上送出');
+          track('line_click', { consult_type: type.title });
+        } else { event.preventDefault(); toast('無法自動複製，請手動選取訊息'); textarea.select(); }
       }
     }, '複製訊息並前往官方 LINE');
     const copyBtn = el('button', {
@@ -169,6 +186,7 @@
     ));
     dialog.showModal();
     closeBtn.focus();
+    track('consult_open', { consult_type: type.title });
   }
 
   function renderConsult(data) {
@@ -292,6 +310,7 @@
   }
 
   load().then((data) => {
+    initAnalytics(data);
     if ($('hero-title')) renderHome(data);
     if ($('article-page')) renderArticlePage(data);
     renderFooter(data);

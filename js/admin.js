@@ -109,6 +109,11 @@
       { k: 'site.nameEn', l: '英文名稱', t: 'text' },
       { k: 'site.location', l: '所在地區', t: 'text' }
     ] },
+    { id: 'analytics', label: '流量統計', desc: '用 Google Analytics 查看訪客數、來源與諮詢點擊。',
+      link: { href: 'https://analytics.google.com/analytics/web/', label: '查看流量報表' },
+      fields: [
+        { k: 'site.gaId', l: 'GA 評估 ID', t: 'text', hint: '格式像 G-XXXXXXXXXX。填好後按「發布到官網」才會開始統計；清空再發布就會停止。' }
+      ] },
     { id: 'publish', label: '發布設定', custom: true }
   ];
 
@@ -292,6 +297,7 @@
       const parent = keys.reduce((o, k) => (o[k] = o[k] || {}), data);
       nodes.push(renderField(field, parent, last));
     });
+    if (panel.link) nodes.push(el('a', { class: 'btn', href: panel.link.href, target: '_blank', rel: 'noopener' }, panel.link.label));
     $('panel').replaceChildren(...nodes);
   }
 
@@ -396,6 +402,8 @@
     const problems = [];
     const line = getPath(data, 'links.line');
     if (!/^https:\/\//.test(line || '')) problems.push('官方 LINE 連結需要以 https:// 開頭');
+    const gaId = String(getPath(data, 'site.gaId') || '').trim();
+    if (gaId && !/^G-[A-Z0-9]+$/i.test(gaId)) problems.push('GA 評估 ID 格式不正確，應該像 G-XXXXXXXXXX');
     (data.articles || []).forEach((a) => {
       if (a.published !== false && !String(a.title || '').trim()) problems.push('有公開文章沒有標題');
     });
