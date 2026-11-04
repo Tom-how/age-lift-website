@@ -43,6 +43,7 @@ textarea { resize: vertical; min-height: 120px; }
 .item-body { padding: 14px; border-top: 1px solid var(--line); }
 .image-field { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
 .image-field img { width: 120px; height: 120px; object-fit: cover; background: #c7c9c7; border: 1px solid var(--line); }
+.image-field video { width: 240px; aspect-ratio: 4 / 3; background: #17181a; border: 1px solid var(--line); }
 .image-field .blank { display: flex; align-items: center; justify-content: center; width: 120px; height: 120px; background: #e4e5e3; color: var(--muted); font-size: 13px; }
 .image-controls { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
 .upload-btn { display: inline-flex; align-items: center; }

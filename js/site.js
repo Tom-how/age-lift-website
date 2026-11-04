@@ -100,7 +100,8 @@
       }));
     }
     if (/\.(mp4|webm)(\?|$)/i.test(value)) {
-      return el('div', { class: 'video' }, el('video', { src: value, controls: true, playsinline: true, preload: 'metadata' }));
+      // #t=0.1 讓手機瀏覽器在播放前也顯示影片畫面，而不是一片黑
+      return el('div', { class: 'video video-file' }, el('video', { src: value + '#t=0.1', title: '工作室介紹影片', controls: true, playsinline: true, preload: 'metadata' }));
     }
     return null;
   }

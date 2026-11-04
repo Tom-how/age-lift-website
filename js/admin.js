@@ -3,6 +3,7 @@
   const $ = (id) => document.getElementById(id);
   const CONFIG_KEY = 'agelift-admin-github';
   const IMAGE_MAX = 1600;
+  const VIDEO_MAX_MB = 50;
 
   function el(tag, attrs, ...children) {
     const node = document.createElement(tag);
@@ -62,7 +63,7 @@
     { id: 'about', label: '工作室介紹', desc: '介紹文字、影片與環境照。', fields: [
       { k: 'about.heading', l: '標題', t: 'text' },
       { k: 'about.body', l: '介紹文字', t: 'textarea', rows: 7, hint: '空一行就是新的段落。' },
-      { k: 'about.videoUrl', l: '介紹影片連結', t: 'url', hint: '貼 YouTube 連結。填了影片會取代下方的介紹照片。' },
+      { k: 'about.videoUrl', l: '介紹影片', t: 'video' },
       { k: 'about.image', l: '介紹照片', t: 'image' },
       { k: 'about.points', l: '特色重點', t: 'list', add: '新增重點', title: (i) => i.title, blank: () => ({ title: '', text: '' }),
         item: [{ k: 'title', l: '重點', t: 'text' }, { k: 'text', l: '說明', t: 'text' }] },
@@ -196,9 +197,59 @@
     return el('div', { class: 'field' }, el('span', { class: 'field-label' }, field.l), wrap);
   }
 
+  // 影片太大不適合放進草稿，選好檔案就直接上傳，內容裡只存檔案路徑
+  function videoField(field, obj, key) {
+    const wrap = el('div', { class: 'image-field' });
+    let localPreview = '';
+    const readBase64 = (file) => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result).split(',')[1]);
+      reader.onerror = () => reject(new Error('這個影片檔無法讀取'));
+      reader.readAsDataURL(file);
+    });
+    const draw = (message) => {
+      const value = obj[key];
+      const status = el('span', { class: 'hint', role: 'status' }, message || '');
+      const input = el('input', { type: 'file', accept: 'video/mp4,video/webm', onchange: async () => {
+        const file = input.files[0];
+        if (!file) return;
+        input.value = '';
+        const ext = (file.name.match(/\.(mp4|webm)$/i) || [])[1];
+        if (!ext) { status.textContent = '請選擇 MP4 或 WebM 影片'; return; }
+        if (file.size > VIDEO_MAX_MB * 1024 * 1024) { status.textContent = '影片不能超過 ' + VIDEO_MAX_MB + ' MB，請先壓縮'; return; }
+        const cfg = getConfig();
+        if (!configReady(cfg)) { status.textContent = '請先到「發布設定」填好金鑰，才能上傳影片'; return; }
+        status.textContent = '上傳影片中，請不要關閉頁面…';
+        input.disabled = true;
+        try {
+          const path = 'assets/uploads/' + Date.now() + '.' + ext.toLowerCase();
+          await putFile(cfg, path, await readBase64(file), '後台上傳影片');
+          obj[key] = path;
+          localPreview = URL.createObjectURL(file);
+          touched();
+          draw('上傳完成，請按「發布到官網」。官網要等幾分鐘才能播放。');
+        } catch (err) {
+          input.disabled = false;
+          status.textContent = '上傳失敗：' + err.message;
+        }
+      } });
+      wrap.replaceChildren(
+        value ? el('video', { src: localPreview || value, controls: true, playsinline: true, preload: 'metadata' }) : el('div', { class: 'blank' }, '尚無影片'),
+        el('div', { class: 'image-controls' },
+          el('label', { class: 'btn upload-btn' }, value ? '更換影片' : '上傳影片', input),
+          value ? el('button', { class: 'btn btn-small', type: 'button', onclick: () => { obj[key] = ''; localPreview = ''; touched(); draw(); } }, '移除影片') : null,
+          status)
+      );
+    };
+    draw();
+    return el('div', { class: 'field' }, el('span', { class: 'field-label' }, field.l), wrap,
+      el('span', { class: 'hint' }, '建議 4:3 的 MP4，檔案 ' + VIDEO_MAX_MB + ' MB 以內。有影片時會取代下方的介紹照片。'));
+  }
+
   function renderField(field, obj, key) {
     if (field.t === 'list') return renderList(field, obj, key);
     if (field.t === 'image') return imageField(field, obj, key);
+    if (field.t === 'video') return videoField(field, obj, key);
     if (field.t === 'check') {
       return el('label', { class: 'check' },
         el('input', { type: 'checkbox', checked: field.defaultOff ? obj[key] === true : obj[key] !== false, onchange: (e) => { obj[key] = e.target.checked; touched(); } }),
