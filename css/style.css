@@ -198,8 +198,9 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
   .gallery { grid-template-columns: 1fr 1fr; }
   .gallery figure:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
   .coach { grid-template-columns: 1fr; }
-  .coach-photo { height: 300px; min-height: 0; }
-  .coach-photo img { object-position: top; }
+  .coach-photo { min-height: 0; }
+  .coach-photo img { display: block; height: auto; }
+  .coach-photo img.is-logo { max-height: 300px; }
   .article-list { grid-template-columns: 1fr; }
   .consult-types { grid-template-columns: 1fr; }
   .consult-card { padding: 26px; }
