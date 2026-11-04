@@ -17,47 +17,66 @@
     "image": "assets/photos/studio-2.jpg",
     "videoUrl": "",
     "points": [
-      { "title": "全預約制", "text": "I 人友善的訓練空間" },
-      { "title": "一對一課程", "text": "也有精緻包班團課" },
-      { "title": "多元訓練", "text": "銀髮族、肌力、舉重、健力" },
-      { "title": "自由教練場租", "text": "歡迎教練帶學員使用場地" }
+      {
+        "title": "全預約制",
+        "text": "I 人友善的訓練空間"
+      },
+      {
+        "title": "一對一課程",
+        "text": "也有精緻包班團課"
+      },
+      {
+        "title": "多元訓練",
+        "text": "銀髮族、肌力、舉重、健力"
+      },
+      {
+        "title": "自由教練場租",
+        "text": "歡迎教練帶學員使用場地"
+      }
     ],
     "photos": [
-      { "src": "assets/photos/studio-4.jpg", "caption": "主題牆與深蹲臥推區" },
-      { "src": "assets/photos/studio-1.jpg", "caption": "深蹲架與槓片區" },
-      { "src": "assets/photos/studio-2.jpg", "caption": "舉重平台" },
-      { "src": "assets/photos/studio-3.jpg", "caption": "啞鈴、壺鈴與訓練椅" },
-      { "src": "assets/photos/studio-5.jpg", "caption": "全館空間" }
+      {
+        "src": "assets/photos/studio-4.jpg",
+        "caption": "主題牆與健力區"
+      },
+      {
+        "src": "assets/photos/studio-1.jpg",
+        "caption": "深蹲架與cable區"
+      },
+      {
+        "src": "assets/photos/studio-2.jpg",
+        "caption": "舉重平台"
+      },
+      {
+        "src": "assets/photos/studio-3.jpg",
+        "caption": "啞鈴、壺鈴與訓練椅"
+      },
+      {
+        "src": "assets/photos/studio-5.jpg",
+        "caption": "全館空間"
+      }
     ]
   },
   "coaches": [
     {
-      "name": "教練姓名（待填）",
+      "name": "Tom（待填）",
       "title": "職稱（待填）",
-      "specialties": "專長一, 專長二, 專長三",
-      "bio": "這裡放教練的經歷、證照與教學風格。請到後台的「教練」頁面修改，也可以上傳教練照片。",
-      "photo": "",
-      "instagram": ""
-    },
-    {
-      "name": "教練姓名（待填）",
-      "title": "職稱（待填）",
-      "specialties": "專長一, 專長二",
-      "bio": "這裡放教練的經歷、證照與教學風格。不需要的教練卡片可以在後台刪除。",
-      "photo": "",
-      "instagram": ""
+      "specialties": "健力專項，體態調整，肌力訓練，舉重爆發力訓練，銀髮族訓練",
+      "bio": "重視每位學員的個別需求與訓練品質，透過溝通、觀察與適當的引導，依照不同的身體條件與目標調整訓練方式，幫助學員建立正確的運動觀念，找到適合自己的訓練節奏，讓運動自然融入生活。",
+      "photo": "assets/uploads/1793799872694-1.jpg",
+      "instagram": "https://www.instagram.com/pin_hao0502/"
     }
   ],
   "articles": [
     {
-      "slug": "weekly-training-menu",
-      "title": "一週能練幾天？來，點一杯",
-      "date": "2026-11-05",
-      "tag": "新手入門",
-      "excerpt": "沒時間運動？先別管要練多久，看看你一週擠得出幾天，直接點一杯。",
-      "cover": "assets/articles/weekly-1.jpg",
+      "slug": "a-mw25id26",
+      "title": "想要美好的退休生活，本錢不只式存款，還要有好體力",
+      "date": "2026-11-04",
+      "tag": "銀髮族",
+      "excerpt": "辛苦一輩子，退休後想去旅行、抱孫子，前提是身體得撐得住!",
+      "cover": "assets/uploads/1793799872694-2.jpg",
       "published": true,
-      "body": "「我也想運動，但真的沒時間。」\n\n那先別管要練多久，看看你一週擠得出幾天，直接點一杯。\n\n## 本店菜單\n\n- **小杯｜一週 1 天：**全身重訓 1 次，先養成習慣\n- **中杯｜一週 2 天：**全身重訓 2 次，上班族也排得進去\n- **大杯｜一週 3 天：**全身重訓 2 次＋有氧 1 次，肌力、心肺都顧到\n\n![本店菜單](assets/articles/weekly-2.jpg)\n\n## 還能免費加料\n\n每天快走約 22 分鐘，一週就累積約 150 分鐘。\n\n## 來源與說明\n\n每週 2 天肌力訓練、每週 150～300 分鐘中等強度有氧，參考 WHO 2020 身體活動指引。三種杯型的菜單與每次 45～60 分鐘，是教練建議範例，不是研究得出的公式。"
+      "body": "📌 為什麼需要肌力訓練？\n台灣已是超高齡社會，65 歲以上占 20.06%，約每 5 人就有 1 位長輩。肌肉從 30 歲起每 10 年流失約 3–8%，60 歲後加速，沒有刻意訓練，流失更明顯。\n⚠️ 會遇到什麼問題？\n・起身、上下樓梯越來越吃力\n・65 歲以上，每年至少三分之一的人會跌倒\n・一跌就可能骨折、臥床，漸漸不敢出門\n💪 肌力訓練能幫什麼？\n・肌肉：增加肌力與肌肉量，減緩流失\n・骨骼：有助維持骨密度。\n・平衡：平衡加肌力的綜合運動，可降\n低 。約 34% 跌倒率。\n・生活：有助提升生活品質與心理狀態。\n🏃帶著你的朋友、家人，一起動起來吧！\n\n\n![圖片說明](assets/uploads/1793799872694-3.jpg)\n\n"
     },
     {
       "slug": "strength-vs-cardio",
@@ -103,7 +122,7 @@
   },
   "contact": {
     "address": "",
-    "mapUrl": "",
+    "mapUrl": "https://www.google.com/maps/place/%E8%89%BE%E5%8B%81+AGELIFT+%E5%81%A5%E8%BA%AB%E5%B7%A5%E4%BD%9C%E5%AE%A4/@24.1780972,120.7188932,17z/data=!3m1!4b1!4m6!3m5!1s0x3469196adec08c3d:0xf16e18b8fe8760d3!8m2!3d24.1780923!4d120.7214681!16s%2Fg%2F11xz4_ffgt?authuser=0&entry=ttu&g_ep=EgoyMDI2MTEwMS4wIKXMDSoASAFQAw%3D%3D",
     "hours": "全預約制",
     "parking": ""
   }
