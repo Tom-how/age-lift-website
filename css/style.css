@@ -79,10 +79,10 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
 .news h2 { font-size: clamp(26px, 3vw, 38px); }
 .news-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; }
 .news-track::-webkit-scrollbar { display: none; }
-.news-slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); scroll-snap-align: start; scroll-snap-stop: always; background: var(--charcoal-2); border-top: 4px solid var(--orange); }
+.news-slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; scroll-snap-align: start; scroll-snap-stop: always; background: var(--charcoal-2); border-top: 4px solid var(--orange); }
 .news-slide.no-image { grid-template-columns: minmax(0, 1fr); }
 .news-slide.image-only { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; align-content: center; background: var(--ink); }
-.news-image { position: relative; display: block; min-height: 160px; background: var(--ink); }
+.news-image { position: relative; display: block; min-height: 160px; aspect-ratio: 16 / 9; background: var(--ink); }
 .image-only .news-image { aspect-ratio: 16 / 9; }
 .news-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .news-body { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 20px; }
