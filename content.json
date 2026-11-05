@@ -151,5 +151,17 @@
     "mapUrl": "https://www.google.com/maps/place/%E8%89%BE%E5%8B%81+AGELIFT+%E5%81%A5%E8%BA%AB%E5%B7%A5%E4%BD%9C%E5%AE%A4/@24.1780972,120.7188932,17z/data=!3m1!4b1!4m6!3m5!1s0x3469196adec08c3d:0xf16e18b8fe8760d3!8m2!3d24.1780923!4d120.7214681!16s%2Fg%2F11xz4_ffgt?authuser=0&entry=ttu&g_ep=EgoyMDI2MTEwMS4wIKXMDSoASAFQAw%3D%3D",
     "hours": "全預約制",
     "parking": ""
-  }
+  },
+  "announcements": [
+    {
+      "title": "體驗課",
+      "tag": "活動",
+      "date": "2026-11-05",
+      "image": "assets/uploads/1793852324026-1.jpg",
+      "text": "想運動？不妨先來體驗看看！\n\n不論你是健身新手，還是想讓訓練更有效率，都歡迎來艾勁認識適合自己的訓練方式。\n\n🏋️ 私人教練體驗課程 $500\n\n採預約制，歡迎私訊了解及預約！",
+      "link": "",
+      "linkLabel": "",
+      "published": true
+    }
+  ]
 }
