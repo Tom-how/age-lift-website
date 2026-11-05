@@ -60,14 +60,15 @@
       { k: 'hero.subtitle', l: '說明文字', t: 'textarea', rows: 3 },
       { k: 'hero.image', l: '主視覺照片', t: 'image' }
     ] },
-    { id: 'news', label: '最新公告', desc: '合作廠商、優惠或活動消息，會顯示在首頁主視覺下方。多則時每 5 秒自動輪播，也可以左右滑動。一則放一張照片；只傳圖片不填標題和內容，就會整張當廣告圖顯示。沒有公開的公告時，這個區塊不會出現。', fields: [
+    { id: 'news', label: '最新公告', desc: '合作廠商、優惠或活動消息，會顯示在首頁主視覺下方。多則時每 5 秒自動輪播，也可以左右滑動。一則放一張照片；只傳圖片不填標題和內容，就會整張當廣告圖顯示。全部都是廣告圖時會滿版。沒有公開的公告時，這個區塊不會出現。', fields: [
       { k: 'announcements', t: 'list', add: '新增公告', prepend: true, title: (i) => (i.published === false ? '【未公開】' : '') + (i.title || (i.image ? '圖片公告' : '新公告')),
-        blank: () => ({ title: '', tag: '', date: new Date().toISOString().slice(0, 10), image: '', text: '', link: '', linkLabel: '', published: true }),
+        blank: () => ({ title: '', tag: '', date: new Date().toISOString().slice(0, 10), image: '', imageMobile: '', text: '', link: '', linkLabel: '', published: true }),
         item: [
           { k: 'title', l: '標題', t: 'text' },
           { k: 'tag', l: '分類', t: 'text', hint: '例如：合作廠商、優惠、活動。不填就不顯示。' },
           { k: 'date', l: '日期', t: 'date', hint: '清空就不顯示。' },
-          { k: 'image', l: '圖片', t: 'image', hint: '圖片會完整顯示不裁切，建議用 16:9 的橫式圖。' },
+          { k: 'image', l: '圖片', t: 'image', hint: '圖片會完整顯示不裁切。只放圖片時建議用 3:1 的橫幅（例如 1600×533），電腦版才會左右滿版；有文字時建議 16:9。' },
+          { k: 'imageMobile', l: '手機版圖片（選填）', t: 'image', hint: '手機上換成這張，建議 16:9。沒傳就用上面那張。' },
           { k: 'text', l: '內容', t: 'textarea', rows: 5, hint: '空一行就是新的段落。' },
           { k: 'link', l: '按鈕連結', t: 'url', hint: '例如廠商網站或官方 LINE。沒填就不顯示按鈕；只放圖片時，點整張圖會開這個連結。' },
           { k: 'linkLabel', l: '按鈕文字', t: 'text', hint: '沒填會顯示「了解更多」。' },

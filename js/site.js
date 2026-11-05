@@ -225,12 +225,18 @@
 
   const NEWS_INTERVAL = 5000;
 
+  // 只傳圖片、沒有文字時，整張當廣告圖顯示，有連結就整張可以點
+  const isImageOnly = (item) => item.image && !item.title && !String(item.text || '').trim();
+
   function newsSlide(item) {
     const link = safeUrl(item.link);
     const clickLink = () => track('announcement_click', { title: item.title || '' });
-    const image = item.image ? el('img', { src: item.image, alt: item.title || '公告圖片' }) : null;
-    // 只傳圖片、沒有文字時，整張當廣告圖顯示，有連結就整張可以點
-    if (image && !item.title && !String(item.text || '').trim()) {
+    const img = item.image ? el('img', { src: item.image, alt: item.title || '公告圖片' }) : null;
+    // 手機版可以另外放一張比例較高的圖，字才看得清楚
+    const image = img && safeUrl(item.imageMobile)
+      ? el('picture', null, el('source', { media: '(max-width: 760px)', srcset: safeUrl(item.imageMobile) }), img)
+      : img;
+    if (isImageOnly(item)) {
       return el('article', { class: 'news-slide image-only' }, link
         ? el('a', { class: 'news-image', href: link, target: '_blank', rel: 'noopener', onclick: clickLink }, image)
         : el('div', { class: 'news-image' }, image));
@@ -249,6 +255,8 @@
     const items = (data.announcements || []).filter((a) => a.published !== false && (a.title || a.image));
     $('news').hidden = !items.length;
     if (!items.length) return;
+    // 全部都是廣告圖時滿版顯示；混有圖文公告時維持小框
+    $('news').classList.toggle('news-full', items.every(isImageOnly));
     const slides = el('div', { class: 'news-track', tabindex: '0', role: 'group', 'aria-label': '最新公告，可左右滑動' }, items.map(newsSlide));
     $('news-list').replaceChildren(slides);
     if (items.length < 2) return;

@@ -101,6 +101,15 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
 .news-dot::before { content: ""; display: block; height: 4px; margin: 0 3px; background: var(--paper-muted); opacity: .5; }
 .news-dot[aria-current="true"]::before { background: var(--orange); opacity: 1; }
 
+/* 全部都是廣告圖時滿版：不留邊也不顯示標題（保留給螢幕閱讀器） */
+.news.news-full.section { padding: 0; }
+.news-full .news-wrap { display: block; width: 100%; padding: 0; }
+.news-full .news-head { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.news-full .news-list { width: 100%; margin: 0; }
+.news-full .news-slide { border-top: 0; }
+.news-full .news-image { aspect-ratio: 3 / 1; }
+.news-full .news-controls { margin: 0; padding: 0 16px; }
+
 /* 工作室 */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 72px; }
 .prose { margin-top: 26px; font-size: 17px; }
@@ -231,7 +240,7 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
   .news-slide { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
   .news-slide.no-image { grid-template-rows: 1fr; }
   .news-slide.image-only { grid-template-rows: auto; }
-  .news-image { aspect-ratio: 16 / 9; }
+  .news-image, .news-full .news-image { aspect-ratio: 16 / 9; }
   .gallery { grid-template-columns: 1fr 1fr; }
   .gallery figure:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
   .coach { grid-template-columns: 1fr; }
