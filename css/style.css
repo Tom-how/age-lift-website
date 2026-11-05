@@ -74,7 +74,7 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
 
 /* 最新公告 */
 .news.section { padding: 40px 0; }
-.news-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 40px; align-items: center; }
+.news-list { margin-top: 20px; }
 .news .index { margin-bottom: 10px; }
 .news h2 { font-size: clamp(26px, 3vw, 38px); }
 .news-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; }
@@ -100,6 +100,15 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
 .news-dot { width: 28px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
 .news-dot::before { content: ""; display: block; height: 4px; margin: 0 3px; background: var(--paper-muted); opacity: .5; }
 .news-dot[aria-current="true"]::before { background: var(--orange); opacity: 1; }
+
+/* 電腦版左圖右文：圖片高度對齊文字，文字特別多時才會裁掉一點圖片左右，不留黑邊 */
+@media (min-width: 961px) {
+  .news-slide { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto; }
+  .news-slide:not(.image-only) .news-image img { object-fit: cover; }
+  .news-body { gap: 10px; padding: 24px 32px; }
+  .news-body h3 { font-size: 26px; }
+  .news-text { font-size: 16px; }
+}
 
 /* 全部都是廣告圖時滿版：不留邊也不顯示標題（保留給螢幕閱讀器） */
 .news.news-full.section { padding: 0; }
