@@ -72,6 +72,35 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
 .dark .btn { border-color: var(--paper); color: var(--paper); }
 .dark .btn:hover { box-shadow: 4px 4px 0 var(--paper); }
 
+/* 最新公告 */
+.news.section { padding: 40px 0; }
+.news-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 40px; align-items: center; }
+.news .index { margin-bottom: 10px; }
+.news h2 { font-size: clamp(26px, 3vw, 38px); }
+.news-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; }
+.news-track::-webkit-scrollbar { display: none; }
+.news-slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); scroll-snap-align: start; scroll-snap-stop: always; background: var(--charcoal-2); border-top: 4px solid var(--orange); }
+.news-slide.no-image { grid-template-columns: minmax(0, 1fr); }
+.news-slide.image-only { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; align-content: center; background: var(--ink); }
+.news-image { position: relative; display: block; min-height: 160px; background: var(--ink); }
+.image-only .news-image { aspect-ratio: 16 / 9; }
+.news-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.news-body { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 20px; }
+.news-body .meta { color: var(--paper-muted); }
+.news-body .meta b { background: var(--orange); color: var(--ink); }
+.news-body h3 { font-size: 20px; font-weight: 900; line-height: 1.35; }
+.news-text { color: #d4d5d4; font-size: 14px; line-height: 1.6; }
+.news-text p + p { margin-top: .5em; }
+.news-body .btn { min-height: 42px; margin-top: auto; padding: 8px 16px; border-width: 2px; font-size: 14px; }
+.news-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.news-arrow { width: 44px; height: 44px; flex: none; border: 0; background: none; color: var(--paper); font: 900 18px/1 var(--sans); cursor: pointer; }
+.news-arrow:hover { background: var(--orange); color: var(--ink); }
+.news-toggle { font-size: 12px; }
+.news-dots { display: flex; flex: 1; flex-wrap: wrap; justify-content: center; min-width: 0; }
+.news-dot { width: 28px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
+.news-dot::before { content: ""; display: block; height: 4px; margin: 0 3px; background: var(--paper-muted); opacity: .5; }
+.news-dot[aria-current="true"]::before { background: var(--orange); opacity: 1; }
+
 /* 工作室 */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 72px; }
 .prose { margin-top: 26px; font-size: 17px; }
@@ -178,6 +207,8 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
 .load-error { padding: 80px 24px; text-align: center; color: var(--paper); }
 
 @media (max-width: 960px) {
+  .news-wrap { display: block; }
+  .news-list { width: min(560px, 100%); margin-top: 16px; }
   .about-grid { grid-template-columns: 1fr; gap: 44px; }
   .article-list { grid-template-columns: 1fr 1fr; }
 }
@@ -196,6 +227,11 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
   .hero-photo { min-height: 0; height: 58vw; max-height: 340px; }
   .hero-photo::after { background: linear-gradient(0deg, rgba(141,143,142,.85), transparent 45%); }
   .actions .btn { flex: 1 1 140px; padding-inline: 14px; }
+  .news.section { padding: 32px 0; }
+  .news-slide { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
+  .news-slide.no-image { grid-template-rows: 1fr; }
+  .news-slide.image-only { grid-template-rows: auto; }
+  .news-image { aspect-ratio: 16 / 9; }
   .gallery { grid-template-columns: 1fr 1fr; }
   .gallery figure:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
   .coach { grid-template-columns: 1fr; }
@@ -216,6 +252,6 @@ h1 .accent { display: block; color: var(--paper); text-shadow: 0 2px 22px rgba(0
   .mobile-bar .mobile-cta { background: var(--orange); color: var(--ink); font-weight: 900; }
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html, .news-track { scroll-behavior: auto; }
   * { transition: none !important; }
 }
