@@ -60,6 +60,20 @@
       { k: 'hero.subtitle', l: '說明文字', t: 'textarea', rows: 3 },
       { k: 'hero.image', l: '主視覺照片', t: 'image' }
     ] },
+    { id: 'news', label: '最新公告', desc: '合作廠商、優惠或活動消息，會顯示在首頁主視覺下方。多則時每 5 秒自動輪播，也可以左右滑動。一則放一張照片；只傳圖片不填標題和內容，就會整張當廣告圖顯示。沒有公開的公告時，這個區塊不會出現。', fields: [
+      { k: 'announcements', t: 'list', add: '新增公告', prepend: true, title: (i) => (i.published === false ? '【未公開】' : '') + (i.title || (i.image ? '圖片公告' : '新公告')),
+        blank: () => ({ title: '', tag: '', date: new Date().toISOString().slice(0, 10), image: '', text: '', link: '', linkLabel: '', published: true }),
+        item: [
+          { k: 'title', l: '標題', t: 'text' },
+          { k: 'tag', l: '分類', t: 'text', hint: '例如：合作廠商、優惠、活動。不填就不顯示。' },
+          { k: 'date', l: '日期', t: 'date', hint: '清空就不顯示。' },
+          { k: 'image', l: '圖片', t: 'image', hint: '圖片會完整顯示不裁切，建議用 16:9 的橫式圖。' },
+          { k: 'text', l: '內容', t: 'textarea', rows: 5, hint: '空一行就是新的段落。' },
+          { k: 'link', l: '按鈕連結', t: 'url', hint: '例如廠商網站或官方 LINE。沒填就不顯示按鈕；只放圖片時，點整張圖會開這個連結。' },
+          { k: 'linkLabel', l: '按鈕文字', t: 'text', hint: '沒填會顯示「了解更多」。' },
+          { k: 'published', l: '公開這則公告', t: 'check' }
+        ] }
+    ] },
     { id: 'about', label: '工作室介紹', desc: '介紹文字、影片與環境照。', fields: [
       { k: 'about.heading', l: '標題', t: 'text' },
       { k: 'about.body', l: '介紹文字', t: 'textarea', rows: 7, hint: '空一行就是新的段落。' },
@@ -194,7 +208,8 @@
       );
     };
     draw();
-    return el('div', { class: 'field' }, el('span', { class: 'field-label' }, field.l), wrap);
+    return el('div', { class: 'field' }, el('span', { class: 'field-label' }, field.l), wrap,
+      field.hint ? el('span', { class: 'hint' }, field.hint) : null);
   }
 
   // 影片太大不適合放進草稿，選好檔案就直接上傳，內容裡只存檔案路徑
@@ -457,6 +472,11 @@
     if (gaId && !/^G-[A-Z0-9]+$/i.test(gaId)) problems.push('GA 評估 ID 格式不正確，應該像 G-XXXXXXXXXX');
     (data.articles || []).forEach((a) => {
       if (a.published !== false && !String(a.title || '').trim()) problems.push('有公開文章沒有標題');
+    });
+    (data.announcements || []).forEach((a) => {
+      if (a.published === false) return;
+      if (!String(a.title || '').trim() && !a.image) problems.push('有公開的公告沒有標題也沒有圖片');
+      if (String(a.link || '').trim() && !/^https?:\/\//i.test(String(a.link).trim())) problems.push('公告「' + (a.title || '未命名') + '」的按鈕連結需要以 https:// 開頭');
     });
     return problems;
   }

@@ -223,7 +223,78 @@
         el('p', null, article.excerpt)));
   }
 
+  const NEWS_INTERVAL = 5000;
+
+  function newsSlide(item) {
+    const link = safeUrl(item.link);
+    const clickLink = () => track('announcement_click', { title: item.title || '' });
+    const image = item.image ? el('img', { src: item.image, alt: item.title || '公告圖片' }) : null;
+    // 只傳圖片、沒有文字時，整張當廣告圖顯示，有連結就整張可以點
+    if (image && !item.title && !String(item.text || '').trim()) {
+      return el('article', { class: 'news-slide image-only' }, link
+        ? el('a', { class: 'news-image', href: link, target: '_blank', rel: 'noopener', onclick: clickLink }, image)
+        : el('div', { class: 'news-image' }, image));
+    }
+    return el('article', { class: 'news-slide' + (image ? '' : ' no-image') },
+      image ? el('div', { class: 'news-image' }, image) : null,
+      el('div', { class: 'news-body' },
+        item.tag || item.date ? el('div', { class: 'meta' }, item.tag ? el('b', null, item.tag) : null, formatDate(item.date)) : null,
+        item.title ? el('h3', null, item.title) : null,
+        el('div', { class: 'news-text' }, paragraphs(item.text)),
+        link ? el('a', { class: 'btn', href: link, target: '_blank', rel: 'noopener', onclick: clickLink }, item.linkLabel || '了解更多') : null));
+  }
+
+  // 沒有公開的公告時，整個區塊不顯示
+  function renderNews(data) {
+    const items = (data.announcements || []).filter((a) => a.published !== false && (a.title || a.image));
+    $('news').hidden = !items.length;
+    if (!items.length) return;
+    const slides = el('div', { class: 'news-track', tabindex: '0', role: 'group', 'aria-label': '最新公告，可左右滑動' }, items.map(newsSlide));
+    $('news-list').replaceChildren(slides);
+    if (items.length < 2) return;
+    let index = 0;
+    let timer;
+    let holding = false;
+    // 系統設定減少動態的訪客，預設不自動輪播
+    let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const go = (to) => slides.scrollTo({ left: ((to + items.length) % items.length) * slides.clientWidth });
+    const arm = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (!paused && !holding && !document.hidden) go(index + 1);
+        arm();
+      }, NEWS_INTERVAL);
+    };
+    const prev = el('button', { class: 'news-arrow', type: 'button', 'aria-label': '上一則', onclick: () => go(index - 1) }, '←');
+    const next = el('button', { class: 'news-arrow', type: 'button', 'aria-label': '下一則', onclick: () => go(index + 1) }, '→');
+    const toggle = el('button', { class: 'news-arrow news-toggle', type: 'button', onclick: () => { paused = !paused; drawToggle(); arm(); } });
+    const drawToggle = () => {
+      toggle.textContent = paused ? '▶' : '❚❚';
+      toggle.setAttribute('aria-label', paused ? '繼續輪播' : '暫停輪播');
+    };
+    const dots = items.map((item, i) => el('button', { class: 'news-dot', type: 'button', 'aria-label': '第 ' + (i + 1) + ' 則', onclick: () => go(i) }));
+    const sync = () => {
+      index = Math.round(slides.scrollLeft / slides.clientWidth) || 0;
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      arm(); // 每次換頁後都重新計時，手動滑動後不會馬上又被換掉
+    };
+    slides.addEventListener('scroll', sync, { passive: true });
+    // 滑鼠停在上面、手指按著或用鍵盤操作時先不換頁
+    const box = $('news-list');
+    box.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') holding = true; });
+    box.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') holding = false; });
+    box.addEventListener('touchstart', () => { holding = true; }, { passive: true });
+    box.addEventListener('touchend', () => { holding = false; arm(); }, { passive: true });
+    box.addEventListener('touchcancel', () => { holding = false; }, { passive: true });
+    box.addEventListener('focusin', (e) => { if (e.target.matches(':focus-visible')) holding = true; });
+    box.addEventListener('focusout', () => { holding = false; });
+    box.append(el('div', { class: 'news-controls' }, prev, el('div', { class: 'news-dots' }, dots), toggle, next));
+    drawToggle();
+    sync();
+  }
+
   function renderHome(data) {
+    renderNews(data);
     const hero = data.hero || {};
     const lines = String(hero.title || '').split('\n');
     $('hero-eyebrow').textContent = hero.eyebrow || '';
