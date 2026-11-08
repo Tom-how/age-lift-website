@@ -164,6 +164,17 @@
   },
   "announcements": [
     {
+      "title": "停電提醒",
+      "tag": "公告",
+      "date": "2026-11-08",
+      "image": "assets/uploads/1794142374065-1.jpg",
+      "imageMobile": "assets/uploads/1794142374065-1.jpg",
+      "text": "因台電線路搶修工程\n\n當日配合暫停供電，請見諒\n\n11/9(一)9:00-11:00",
+      "link": "",
+      "linkLabel": "",
+      "published": true
+    },
+    {
       "title": "體驗課",
       "tag": "活動",
       "date": "2026-11-05",
